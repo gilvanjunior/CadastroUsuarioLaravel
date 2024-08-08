@@ -1,0 +1,39 @@
+name:  DemoNewCD
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run one-line scripts
+      run: echo Hello Word
+
+  deploy-dev:
+    runs-on: ubuntu-latest
+    enviropment:
+      name: dev
+      url: 'teste.com.br'
+    needs: build
+    steps:
+      - name: Run one-line scripts
+      run: echo Hello Word
+
+deploy-hmg:
+    runs-on: ubuntu-latest
+    enviropment:
+      name: hmg
+      url: 'teste.com.br'
+    needs: deploy-dev
+    steps:
+      - name: Run one-line scripts
+      run: echo Hello Word
+
+deploy-prod:
+    runs-on: ubuntu-latest
+    enviropment:
+      name: prod
+      url: 'teste.com.br'
+    needs: deploy-hmg
+    steps:
+      - name: Run one-line scripts
+      run: echo Hello Word
